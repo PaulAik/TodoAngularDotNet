@@ -1,0 +1,22 @@
+﻿<div class="page-wrapper">
+    <div class="todo" ng-controller="todoCtrl">
+        <div class="todo_header">Todo App</div>
+        <div class="todo_controls">
+            <form name="todoForm" novalidate>
+                <span ng-show="submitted && todoForm.Name.$error.paulMinLength">Todo length needs to be more than 5!</span>
+                <span ng-show="submitted && todoForm.Name.$error.required">Todo required!</span>
+                <input type="text" name="Name" value="" placeholder="New todo" ng-model="newTodo.Name" paul-min-length="5" required />
+                
+                <button ng-click="addTodo()">Add</button>
+            </form>
+            </div>
+            <ul class="todo_list" ng-repeat="todo in todos">
+                <li class="todo_item" ng-class="{'todo_item--done' : todo.Done}">
+                    <input type="checkbox" id="todo_{{$index}}" ng-model="todo.Done" ng-change="updateTodo(todo)" /> <label for="todo_{{$index}}">{{todo.Name}}</label>
+                </li>
+            </ul>
+            <div class="todo_footer">{{ doneCount }} of {{ todos.length }} done.
+        </div>
+    </div>
+</div>
+
